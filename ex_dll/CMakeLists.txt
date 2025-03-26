@@ -16,5 +16,8 @@ set(HEADER_FILES
     impl.h
 )
 
+find_package(Eigen3 REQUIRED)
+
 # Create the shared library (DLL)
 add_library(CppWrapper SHARED ${HEADER_FILES} ${SOURCE_FILES})
+target_link_libraries(CppWrapper Eigen3::Eigen)

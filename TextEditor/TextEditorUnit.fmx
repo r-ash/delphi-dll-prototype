@@ -142,6 +142,13 @@ object TextEditorForm: TTextEditorForm
     Text = 'Run C++ code'
     OnClick = ClickCppButton
   end
+  object CppArrayButton: TButton
+    Position.X = 24.000000000000000000
+    Position.Y = 64.000000000000000000
+    TabOrder = 15
+    Text = 'Add arrays'
+    OnClick = CppArrayButtonClick
+  end
   object ActionList: TActionList
     Left = 64
     Top = 184

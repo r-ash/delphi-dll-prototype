@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.ScrollBox,
   FMX.Memo, FMX.Controls.Presentation, FMX.StdCtrls, FMX.Menus, System.Actions,
-  FMX.ActnList, CppRun;
+  FMX.ActnList, CppRun, Projection;
 
 type
   TTextEditorForm = class(TForm)
@@ -47,6 +47,7 @@ type
     ColumnNumber: TLabel;
     LineCount: TLabel;
     CppButton: TButton;
+    CppArrayButton: TButton;
     procedure FormCreate(Sender: TObject);
     procedure EditorKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -65,6 +66,7 @@ type
     procedure DeleteActionExecute(Sender: TObject);
     procedure WordWrapActionExecute(Sender: TObject);
     procedure ClickCppButton(Sender: TObject);
+    procedure CppArrayButtonClick(Sender: TObject);
   private
     { Private declarations }
     CurrentFile: String;
@@ -97,6 +99,14 @@ end;
 procedure TTextEditorForm.CopyActionExecute(Sender: TObject);
 begin
   Editor.CopyToClipboard;
+end;
+
+procedure TTextEditorForm.CppArrayButtonClick(Sender: TObject);
+  var InfoMessage: string; res: Double;
+begin
+  res := RunProjection();
+  InfoMessage := Format('Projection result is %f', [res]);
+  ShowMessage(InfoMessage);
 end;
 
 procedure TTextEditorForm.CutActionExecute(Sender: TObject);

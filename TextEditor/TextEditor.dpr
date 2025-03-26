@@ -3,7 +3,9 @@ program TextEditor;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  TextEditorUnit in 'TextEditorUnit.pas' {TextEditorForm};
+  TextEditorUnit in 'TextEditorUnit.pas' {TextEditorForm},
+  CppRun in 'CppRun.pas',
+  Projection in 'Projection.pas';
 
 {$R *.res}
 

@@ -28,3 +28,10 @@ Then open the TextEditor in RAD Studio and build it as 32-bit Windows applicatio
    ./ex_dll/build_dll.sh
    ```
 3. Run the app from RAD studio
+
+## Notes
+
+Just noting a couple of things I found useful whilst working on this
+
+* RAD Studio has a utility `tdump` which you can use to look at exported names from a DLL. `tdump.exe <path/to/dll>` it can help diagnose issues with name mangling
+* There are some excellent articles on [Rudy's Delphi Corner](http://rvelthuis.de/articles/index.html) related to Delphi & C++ interop

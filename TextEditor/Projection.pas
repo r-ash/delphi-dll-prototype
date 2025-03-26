@@ -1,0 +1,33 @@
+unit Projection;
+
+interface
+
+uses CppRun;
+
+const
+  NUM_SEXES = 2;
+  NUM_AGES = 61;
+
+type
+  TArrayA = array[0..(NUM_SEXES - 1), 0..(NUM_AGES - 1)] of Double;
+
+function RunProjection(): Double;
+
+implementation
+
+function RunProjection(): Double;
+var
+  i, j: Integer;
+  A, B: TArrayA;
+begin
+   Randomize();
+   for i := 0 to NUM_SEXES - 1 do
+     for j := 0 to NUM_AGES - 1 do
+       begin;
+         A[i, j] := Random(100);
+         B[i, j] := Random(100);
+      end;
+   Result := AddArrays(@A[0, 0], @B[0, 0], NUM_SEXES, NUM_AGES)
+end;
+
+end.
