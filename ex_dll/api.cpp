@@ -23,3 +23,16 @@ DllExport double WINAPI addArrays(double* dataA, double* dataB, int d1, int d2) 
     }
     return out;
 }
+
+DllExport void WINAPI addArraysInPlace(double* dataA, double* dataB, int d1, int d2, double* out) {
+    #pragma EXPORT
+    Eigen::TensorMap<Eigen::Tensor<double, 2>> tensorA(dataA, d1, d2);
+    Eigen::TensorMap<Eigen::Tensor<double, 2>> tensorB(dataB, d1, d2);
+    Eigen::TensorMap<Eigen::Tensor<double, 2>> outTensor(out, d1, d2);
+
+    for (int i = 0; i < d1; ++i) {
+        for (int j = 0; j < d2; ++j) {
+            outTensor(i, j) = tensorA(i, j) + tensorB(i, j);
+        }
+    }
+}
