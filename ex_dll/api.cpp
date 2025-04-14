@@ -36,3 +36,12 @@ DllExport void WINAPI addArraysInPlace(double* dataA, double* dataB, int d1, int
         }
     }
 }
+
+DllExport HRESULT __stdcall useSafecall(int i) {
+    #pragma EXPORT
+    if (i == 2) {
+        return DISP_E_OVERFLOW;
+    } else {
+        return S_OK;
+    }
+}

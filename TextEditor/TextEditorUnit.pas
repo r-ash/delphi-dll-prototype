@@ -48,6 +48,7 @@ type
     LineCount: TLabel;
     CppButton: TButton;
     CppArrayButton: TButton;
+    useSafecallButton: TButton;
     procedure FormCreate(Sender: TObject);
     procedure EditorKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -67,6 +68,7 @@ type
     procedure WordWrapActionExecute(Sender: TObject);
     procedure ClickCppButton(Sender: TObject);
     procedure CppArrayButtonClick(Sender: TObject);
+    procedure useSafecallButtonClick(Sender: TObject);
   private
     { Private declarations }
     CurrentFile: String;
@@ -236,6 +238,12 @@ begin
   LineNumber.Text := 'L: ' + (Editor.CaretPosition.Line+1).ToString;
   ColumnNumber.Text := 'C: ' + (Editor.CaretPosition.Pos+1).ToString;
   LineCount.Text := 'Lines: ' + Editor.Lines.Count.ToString;
+end;
+
+procedure TTextEditorForm.useSafecallButtonClick(Sender: TObject);
+begin
+  UseSafecall(2);
+  ShowMessage('Safe call clicked');
 end;
 
 procedure TTextEditorForm.WordWrapActionExecute(Sender: TObject);
