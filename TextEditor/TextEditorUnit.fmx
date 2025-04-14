@@ -156,6 +156,13 @@ object TextEditorForm: TTextEditorForm
     Text = 'Use Safecall'
     OnClick = useSafecallButtonClick
   end
+  object addPairRecord: TButton
+    Position.X = 24.000000000000000000
+    Position.Y = 144.000000000000000000
+    TabOrder = 22
+    Text = 'Add pair record'
+    OnClick = AddPairRecordClick
+  end
   object ActionList: TActionList
     Left = 64
     Top = 184

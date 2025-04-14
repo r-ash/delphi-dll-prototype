@@ -13,6 +13,7 @@ type
 
 function RunProjection(): Double;
 function RunProjectionInPlace(): Double;
+function RunProjectionPair(): Double;
 
 implementation
 
@@ -37,21 +38,50 @@ var
   res: Double;
   A, B, Outa: TArrayA;
 begin
-   Randomize();
-   for i := 0 to NUM_SEXES - 1 do
-     for j := 0 to NUM_AGES - 1 do
-       begin;
-         A[i, j] := Random(100);
-         B[i, j] := Random(100);
-       end;
-   AddArraysInPlace(@A[0, 0], @B[0, 0], NUM_SEXES, NUM_AGES, @Outa[0, 0]);
-   res := 0;
-   for i := 0 to NUM_SEXES - 1 do
-     for j := 0 to NUM_AGES - 1 do
-       begin;
-         res := res + Outa[i, j];
-       end;
-   Result := res;
+  Randomize();
+  for i := 0 to NUM_SEXES - 1 do
+    for j := 0 to NUM_AGES - 1 do
+      begin;
+        A[i, j] := Random(100);
+        B[i, j] := Random(100);
+      end;
+  AddArraysInPlace(@A[0, 0], @B[0, 0], NUM_SEXES, NUM_AGES, @Outa[0, 0]);
+  res := 0;
+  for i := 0 to NUM_SEXES - 1 do
+    for j := 0 to NUM_AGES - 1 do
+      begin;
+        res := res + Outa[i, j];
+      end;
+  Result := res;
+end;
+
+function RunProjectionPair(): Double;
+var
+  i, j: Integer;
+  res: Double;
+  A, B, Outa: TArrayA;
+  MyPair: TArrayPair;
+begin;
+  Randomize();
+  for i := 0 to NUM_SEXES - 1 do
+    for j := 0 to NUM_AGES - 1 do
+      begin;
+        A[i, j] := Random(100);
+        B[i, j] := Random(100);
+      end;
+
+  MyPair.A := @A[0, 0];
+  MyPair.B := @B[0, 0];
+  MyPair.D1 := NUM_SEXES;
+  MyPair.D2 := NUM_AGES;
+  AddPair(MyPair, @Outa[0, 0]);
+  res := 0;
+  for i := 0 to NUM_SEXES - 1 do
+    for j := 0 to NUM_AGES - 1 do
+      begin;
+        res := res + Outa[i, j];
+      end;
+  Result := res;
 end;
 
 end.

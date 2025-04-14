@@ -49,6 +49,7 @@ type
     CppButton: TButton;
     CppArrayButton: TButton;
     useSafecallButton: TButton;
+    addPairRecord: TButton;
     procedure FormCreate(Sender: TObject);
     procedure EditorKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -69,6 +70,7 @@ type
     procedure ClickCppButton(Sender: TObject);
     procedure CppArrayButtonClick(Sender: TObject);
     procedure useSafecallButtonClick(Sender: TObject);
+    procedure AddPairRecordClick(Sender: TObject);
   private
     { Private declarations }
     CurrentFile: String;
@@ -89,6 +91,15 @@ uses
  FMX.DialogService.Sync, FMX.Memo.Types;
 
 { TTextEditorForm }
+
+procedure TTextEditorForm.AddPairRecordClick(Sender: TObject);
+var
+  InfoMessage: string; res: Double;
+begin
+  res := RunProjectionPair;
+  InfoMessage := Format('Adding pair result is %f', [res]);
+  ShowMessage(InfoMessage);
+end;
 
 procedure TTextEditorForm.ClickCppButton(Sender: TObject);
   var InfoMessage: string; res: Integer;
