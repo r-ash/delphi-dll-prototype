@@ -50,6 +50,7 @@ type
     CppArrayButton: TButton;
     useSafecallButton: TButton;
     addPairRecord: TButton;
+    RunCallback: TButton;
     procedure FormCreate(Sender: TObject);
     procedure EditorKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -71,6 +72,7 @@ type
     procedure CppArrayButtonClick(Sender: TObject);
     procedure useSafecallButtonClick(Sender: TObject);
     procedure AddPairRecordClick(Sender: TObject);
+    procedure RunCallbackClick(Sender: TObject);
   private
     { Private declarations }
     CurrentFile: String;
@@ -99,6 +101,19 @@ begin
   res := RunProjectionPair;
   InfoMessage := Format('Adding pair result is %f', [res]);
   ShowMessage(InfoMessage);
+end;
+
+procedure PrintMessageCallback(msg: PAnsiChar); stdcall;
+var
+  InfoMessage: String;
+begin;
+  InfoMessage := Format('Projection result is %s', [msg]);
+  ShowMessage(InfoMessage);
+end;
+
+procedure TTextEditorForm.RunCallbackClick(Sender: TObject);
+begin
+  CallCallback(@PrintMessageCallback);
 end;
 
 procedure TTextEditorForm.ClickCppButton(Sender: TObject);

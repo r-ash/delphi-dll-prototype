@@ -54,7 +54,7 @@ struct ArrayPair {
     int D2;
 };
 
-DllExport HRESULT WINAPI addPair(ArrayPair pair, double* outData) {
+DllExport HRESULT WINAPI addPair(ArrayPair& pair, double* outData) {
     #pragma EXPORT
     if (!pair.A || !pair.B || !outData) {
         return E_POINTER;
@@ -67,5 +67,14 @@ DllExport HRESULT WINAPI addPair(ArrayPair pair, double* outData) {
             outTensor(i, j) = tensorA(i, j) + tensorB(i, j);
         }
     }
+    return S_OK;
+}
+
+typedef void (WINAPI *CallbackFunction)(const char*);
+
+DllExport HRESULT WINAPI callCallback(CallbackFunction fn) {
+    #pragma EXPORT
+    std::string myMsg = "Here is my message from C++";
+    fn(myMsg.c_str());
     return S_OK;
 }

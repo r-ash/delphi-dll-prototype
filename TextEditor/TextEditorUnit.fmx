@@ -163,6 +163,13 @@ object TextEditorForm: TTextEditorForm
     Text = 'Add pair record'
     OnClick = AddPairRecordClick
   end
+  object RunCallback: TButton
+    Position.X = 152.000000000000000000
+    Position.Y = 24.000000000000000000
+    TabOrder = 27
+    Text = 'RunCallback'
+    OnClick = RunCallbackClick
+  end
   object ActionList: TActionList
     Left = 64
     Top = 184
